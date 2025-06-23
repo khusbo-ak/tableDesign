@@ -1,50 +1,81 @@
 import Image from "next/image";
+import Search from "./components/table/search";
+import { FiEdit } from "react-icons/fi";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-end min-h-screen bg-gray-100">
       <div className="p-4 ">
-        <div className=" w-60 p-4 border-2 rounded-lg "></div>
+        <Search />
       </div>
-<div className="w-full flex justify-center justify-self-center">
-      <table className=" table-auto ">
-        <thead>
-          <tr className="bg-gray-500 text-black ">
-            <th> Name</th>
-            <th> Address</th>
-            <th> Postcode</th>
-            <th> Rating</th>
-            <th> Type of food</th>
-            <th> Action</th>
-          </tr>
-        </thead>
-        <tbody className="">
-          <tr className="bg-gray-200 text-black ">
-            <td> CN Chinese </td>
-            <td> 228 City Road</td>
-            <td> 3JH</td>
-            <td> 5</td>
-            <td> Chinese</td>
-            <td> </td>
-          </tr>
-          <tr className=" text-black">
-            <td>007 Takeaway </td>
-            <td>6 Drummond Street </td>
-            <td>1HY </td>
-            <td>6 </td>
-            <td> Pizza </td>
-            <td></td>
-          </tr>
-          <tr className="bg-gray-200 text-black">
-            <td>042 Restaurant & Bar </td>
-            <td> 885 High Road </td>
-            <td> 1HR</td>
-            <td> 32</td>
-            <td> African</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="w-full flex justify-center">
+        <table className="table-auto">
+          <thead>
+            <tr className="h-10  text-blue-400">
+              <th className="w-60 text-start "> Name</th>
+              <th className="w-60 text-start"> Address</th>
+              <th className="w-60 text-start"> Postcode</th>
+              <th className="w-60 text-start"> Rating</th>
+              <th className="w-60 text-start"> Type of food</th>
+              <th className="w-60 text-start  text-black "> Action</th>
+            </tr>
+          </thead>
+          <tbody className="content-center">
+            <tr className="border-t-2 h-10 border-gray-300 bg-gray-200 text-black w-60 ">
+              <td className="text-start"> CN Chinese </td>
+              <td className="text-start"> 228 City Road</td>
+              <td className="text-start"> 3JH</td>
+              <td className="text-start"> 5</td>
+              <td className="text-start"> Chinese</td>
+              <td className="p-2 flex justify-start gap-2">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button> </td>
+              <hr/>
+            </tr>
+            <tr className=" w-60 border-t-2 h-10 border-gray-300 text-black">
+              <td className="text-start">007 Takeaway </td>
+              <td className="text-start">6 Drummond Street </td>
+              <td className="text-start">1HY </td>
+              <td className="text-start">6 </td>
+              <td className="text-start"> Pizza </td>
+              <td className="p-2 flex justify-start gap-2">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
+            </tr>
+            <tr className="w-60 border-t-2 h-10 border-gray-300 bg-gray-200 text-black">
+              <td className="text-start">042 Restaurant & Bar </td>
+              <td className="text-start"> 885 High Road </td>
+              <td className="text-start"> 1HR</td>
+              <td className="text-start"> 32</td>
+              <td className="text-start"> African</td>
+              <td className="p-2 flex justify-start gap-2">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
+            </tr>
+            <tr className="w-60 border-t-2 h-10 border-gray-300 text-black">
+              <td className="text-start">042 Restaurant & Bar </td>
+              <td className="text-start"> 885 High Road </td>
+              <td className="text-start"> 1HR</td>
+              <td className="text-start"> 32</td>
+              <td className="text-start"> African</td>
+              <td className="p-2 flex justify-start gap-2">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button>
+              </td>
+            </tr>
+            <tr className="w-60 border-t-2 h-10 border-gray-300 bg-gray-200 text-black">
+              <td className="text-start">042 Restaurant & Bar </td>
+              <td className="text-start"> 885 High Road </td>
+              <td className="text-start"> 1HR</td>
+              <td className="text-start"> 32</td>
+              <td className="text-start"> African</td>
+              <td className="p-2 flex justify-start gap-2">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
