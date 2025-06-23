@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "Name": "Bella Vista Italian Kitchen",
+        "Address": "123 Main Street, Downtown",
+        "PostCode": "12345",
+        "Rating": 4.5,
+        "TypeOfFood": "Italian"
+    },
+    {
+        "id": 2,
+        "Name": "Dragon Palace",
+        "Address": "456 Oak Avenue, Chinatown",
+        "PostCode": "67890",
+        "Rating": 4.2,
+        "TypeOfFood": "Chinese"
+    },
+    {
+        "id": 3,
+        "Name": "Mumbai Spice House",
+        "Address": "789 Elm Road, Little India",
+        "PostCode": "54321",
+        "Rating": 4.7,
+        "TypeOfFood": "Indian"
+    },
+    {
+        "id": 4,
+        "Name": "The Burger Barn",
+        "Address": "321 Pine Street, Midtown",
+        "PostCode": "98765",
+        "Rating": 3.8,
+        "TypeOfFood": "American"
+    },
+    {
+        "id": 5,
+        "Name": "Sakura Sushi",
+        "Address": "654 Cherry Lane, East Side",
+        "PostCode": "13579",
+        "Rating": 4.6,
+        "TypeOfFood": "Japanese"
+    },
+    {
+        "id": 6,
+        "Name": "La Fiesta Mexicana",
+        "Address": "987 Sunset Boulevard, West End",
+        "PostCode": "24680",
+        "Rating": 4.3,
+        "TypeOfFood": "Mexican"
+    },
+    {
+        "id": 7,
+        "Name": "Mediterranean Delights",
+        "Address": "147 Harbor View, Coastal District",
+        "PostCode": "86420",
+        "Rating": 4.4,
+        "TypeOfFood": "Mediterranean"
+    },
+    {
+        "id": 8,
+        "Name": "Green Garden Café",
+        "Address": "258 Forest Drive, Northside",
+        "PostCode": "97531",
+        "Rating": 4.1,
+        "TypeOfFood": "Vegetarian"
+    }
+]

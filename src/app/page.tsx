@@ -1,15 +1,28 @@
+"use client";
 import Image from "next/image";
 import Search from "./components/table/search";
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [foodData, setData] = useState([]);
+  useEffect(() => {
+    fetch("/foodData.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(foodData);
   return (
     <div className="flex flex-col items-end min-h-screen bg-gray-100">
       <div className="p-4 ">
         <Search />
       </div>
-      <div className="w-full flex justify-center">
+      {/* <div className="w-full flex justify-center"> */}
         <table className="table-auto">
           <thead>
             <tr className="h-10  text-blue-400">
@@ -22,18 +35,43 @@ export default function Home() {
             </tr>
           </thead>
           <tbody className="content-center">
-            <tr className="border-t-2 h-10 border-gray-300 bg-gray-200 text-black w-60 ">
+            {foodData.map((data) => (
+              <tr
+                key={data.id}
+                className="border-t-2 h-10 border-gray-300 bg-gray-200 text-black w-60"
+              >
+                <td className="text-start">{data.Name}</td>
+                <td className="text-start"> {data.Address}</td>
+                <td className="text-start">{data.PostCode}</td>
+                <td className="text-start"> {data.Rating}</td>
+                <td className="text-start">{data.TypeOfFood}</td>
+                <td className="p-2 flex justify-start gap-2">
+                  <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
+                    <FiEdit />
+                  </button>
+                  <button className="flex justify-center p-2 bg-red-600 text-white rounded-md">
+                    <FaRegTrashAlt />
+                  </button>{" "}
+                </td>
+              </tr>
+            ))}
+            ;
+            {/* <tr className="border-t-2 h-10 border-gray-300 bg-gray-200 text-black w-60 ">
               <td className="text-start"> CN Chinese </td>
               <td className="text-start"> 228 City Road</td>
               <td className="text-start"> 3JH</td>
               <td className="text-start"> 5</td>
               <td className="text-start"> Chinese</td>
               <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button> </td>
-              <hr/>
-            </tr>
-            <tr className=" w-60 border-t-2 h-10 border-gray-300 text-black">
+                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
+                  <FiEdit />
+                </button>
+                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md">
+                  <FaRegTrashAlt />
+                </button>{" "}
+              </td>
+            </tr> */}
+            {/* <tr className=" w-60 border-t-2 h-10 border-gray-300 text-black">
               <td className="text-start">007 Takeaway </td>
               <td className="text-start">6 Drummond Street </td>
               <td className="text-start">1HY </td>
@@ -73,10 +111,10 @@ export default function Home() {
               <td className="p-2 flex justify-start gap-2">
                 <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
                 <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
