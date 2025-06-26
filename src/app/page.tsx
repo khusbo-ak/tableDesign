@@ -31,13 +31,23 @@ export default function Home() {
 
   console.log(foodData);
 
+  const handleEdit = (id) => {
+    console.log ("editId", id);
+
+    onOpen();
+    const data = foodData.filter(item => item.id === id);
+    console.log ("Clicked Data:", data);
+    // if(data !== undefined)
+    //   setData(data.foodData)
+
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let query = e.target.value;
     const newsearch = foodData.filter((item) =>
       item.Name.toLowerCase().includes(query.toLowerCase())
     );
     setSearch(newsearch);
-    // search.length===0 && alert("No results found");
   };
   console.log("search", search);
   return (
@@ -87,7 +97,7 @@ export default function Home() {
                   <td className="text-start">{data.Rating}</td>
                   <td className="text-start">{data.TypeOfFood}</td>
                   <td className="p-2 flex justify-start gap-2">
-                    <button onClick={onOpen} className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
+                    <button onClick={() => handleEdit(data.id)} className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
                       <FiEdit />
                     </button>
                     <button className="flex justify-center p-2 bg-red-600 text-white rounded-md">
@@ -98,67 +108,13 @@ export default function Home() {
               ))
             ) : (
               <tr>
-                <td className="text-center py-4 text-gray-800">
+               
+                  <td className="text-center py-4 text-gray-800 ">
                   No data found
                 </td>
+                 
               </tr>
             )}
-            {/* <tr className="border-t-2 h-10 border-gray-300 bg-gray-200 text-black w-60 ">
-              <td className="text-start"> CN Chinese </td>
-              <td className="text-start"> 228 City Road</td>
-              <td className="text-start"> 3JH</td>
-              <td className="text-start"> 5</td>
-              <td className="text-start"> Chinese</td>
-              <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
-                  <FiEdit />
-                </button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md">
-                  <FaRegTrashAlt />
-                </button>{" "}
-              </td>
-            </tr> */}
-            {/* <tr className=" w-60 border-t-2 h-10 border-gray-300 text-black">
-              <td className="text-start">007 Takeaway </td>
-              <td className="text-start">6 Drummond Street </td>
-              <td className="text-start">1HY </td>
-              <td className="text-start">6 </td>
-              <td className="text-start"> Pizza </td>
-              <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
-            </tr>
-            <tr className="w-60 border-t-2 h-10 border-gray-300 bg-gray-200 text-black">
-              <td className="text-start">042 Restaurant & Bar </td>
-              <td className="text-start"> 885 High Road </td>
-              <td className="text-start"> 1HR</td>
-              <td className="text-start"> 32</td>
-              <td className="text-start"> African</td>
-              <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
-            </tr>
-            <tr className="w-60 border-t-2 h-10 border-gray-300 text-black">
-              <td className="text-start">042 Restaurant & Bar </td>
-              <td className="text-start"> 885 High Road </td>
-              <td className="text-start"> 1HR</td>
-              <td className="text-start"> 32</td>
-              <td className="text-start"> African</td>
-              <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button>
-              </td>
-            </tr>
-            <tr className="w-60 border-t-2 h-10 border-gray-300 bg-gray-200 text-black">
-              <td className="text-start">042 Restaurant & Bar </td>
-              <td className="text-start"> 885 High Road </td>
-              <td className="text-start"> 1HR</td>
-              <td className="text-start"> 32</td>
-              <td className="text-start"> African</td>
-              <td className="p-2 flex justify-start gap-2">
-                <button className="flex justify-center p-2 bg-sky-700 text-white rounded-md"><FiEdit/></button>
-                <button className="flex justify-center p-2 bg-red-600 text-white rounded-md"><FaRegTrashAlt/></button></td>
-            </tr> */}
           </tbody>
         </table>
       </div>
@@ -168,26 +124,32 @@ export default function Home() {
             <>
               <ModalHeader className="flex flex-col gap-1">Edit Information</ModalHeader>
               <ModalBody>
-               <Input
+               <Input 
                  label="Name"
-                //  placeholder="Enter your Name"
                  variant="bordered"
+                 value="abcd"
                />
                 <Input
                  label="Address"
                  variant="bordered"
+                //  value={Address}
+
                /> <Input
                  label="Post Code"
                  variant="bordered"
+                //  value={PostCode}
+
                /> <Input
                  label="Rating"
                  variant="bordered"
+                //  value={Rating}
+
                /> <Input
                  label="Type of food"
                  variant="bordered"
+                //  value={TypeOfFood}
+
                />
-                {/* <div className="flex py-2 px-1 justify-between">
-                </div> */}
               </ModalBody>
               
               <ModalFooter>
