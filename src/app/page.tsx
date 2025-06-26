@@ -15,15 +15,16 @@ type FoodData = {
   TypeOfFood: string;
 };
 export default function Home() {
-  const [foodData, setData] = useState<FoodData[]>([]);
+  const [foodData, setFoodData] = useState<FoodData[]>([]);
   const [search, setSearch] = useState<FoodData[]>([]);
+  const [select, setSelect] = useState<FoodData[]>([]);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   useEffect(() => {
     fetch("/foodData.json")
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
+        setFoodData(data);
         setSearch(data);
       })
       .catch((err) => console.log(err));
