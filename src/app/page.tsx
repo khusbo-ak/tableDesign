@@ -5,7 +5,17 @@ import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt, FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoMdPrint } from "react-icons/io";
-import { Button, Checkbox, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure, Input } from "@heroui/react";
+import {
+  Button,
+  Checkbox,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+  Input,
+} from "@heroui/react";
 type FoodData = {
   id: number;
   Name: string;
@@ -17,8 +27,8 @@ type FoodData = {
 export default function Home() {
   const [foodData, setFoodData] = useState<FoodData[]>([]);
   const [search, setSearch] = useState<FoodData[]>([]);
-  const [select, setSelect] = useState<FoodData[]>([]);
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [select, setSelect] = useState<FoodData | null>(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     fetch("/foodData.json")
@@ -32,16 +42,18 @@ export default function Home() {
 
   console.log(foodData);
 
-  const handleEdit = (id) => {
-    console.log ("editId", id);
+  const handleEdit = (id: number) => {
+    console.log("editId", id);
+    const row = foodData.find((item) => item.id === id);
+    if (!row) return;
+    setSelect({ ...row });
 
     onOpen();
-    const data = foodData.filter(item => item.id === id);
-    console.log ("Clicked Data:", data);
+    // const data = foodData.filter(item => item.id === id);
+    // console.log ("Clicked Data:", data);
     // if(data !== undefined)
     //   setData(data.foodData)
-
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let query = e.target.value;
@@ -98,7 +110,10 @@ export default function Home() {
                   <td className="text-start">{data.Rating}</td>
                   <td className="text-start">{data.TypeOfFood}</td>
                   <td className="p-2 flex justify-start gap-2">
-                    <button onClick={() => handleEdit(data.id)} className="flex justify-center p-2 bg-sky-700 text-white rounded-md">
+                    <button
+                      onClick={() => handleEdit(data.id)}
+                      className="flex justify-center p-2 bg-sky-700 text-white rounded-md"
+                    >
                       <FiEdit />
                     </button>
                     <button className="flex justify-center p-2 bg-red-600 text-white rounded-md">
@@ -109,50 +124,74 @@ export default function Home() {
               ))
             ) : (
               <tr>
-               
-                  <td className="text-center py-4 text-gray-800 ">
+                <td className="text-center py-4 text-gray-800 ">
                   No data found
                 </td>
-                 
               </tr>
             )}
           </tbody>
         </table>
       </div>
-       <Modal className="text-black" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal className="text-black" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Edit Information</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                Edit Information
+              </ModalHeader>
               <ModalBody>
-               <Input 
-                 label="Name"
-                 variant="bordered"
-                 value="abcd"
-               />
                 <Input
-                 label="Address"
-                 variant="bordered"
-                //  value={Address}
-
-               /> <Input
-                 label="Post Code"
-                 variant="bordered"
-                //  value={PostCode}
-
-               /> <Input
-                 label="Rating"
-                 variant="bordered"
-                //  value={Rating}
-
-               /> <Input
-                 label="Type of food"
-                 variant="bordered"
-                //  value={TypeOfFood}
-
-               />
+                  label="Name"
+                  variant="bordered"
+                  value={select?.Name || ""}
+                  onChange={(e) =>
+                    setSelect(
+                      select ? { ...select, Name: e.target.value } : null
+                    )
+                  }
+                />
+                <Input
+                  label="Address"
+                  variant="bordered"
+                  value={select?.Address || ""}
+                  onChange={(e) =>
+                    setSelect(
+                      select ? { ...select, Address: e.target.value } : null
+                    )
+                  }
+                />{" "}
+                <Input
+                  label="Post Code"
+                  variant="bordered"
+                  value={select?.PostCode || ""}
+                  onChange={(e) =>
+                    setSelect(
+                      select ? { ...select, PostCode: e.target.value } : null
+                    )
+                  }
+                />{" "}
+                <Input
+                  label="Rating"
+                  variant="bordered"
+                  value={select?.Rating !== undefined ? String(select.Rating) : ""}
+                  onChange={(e) =>
+                    setSelect(
+                      select ? { ...select, Rating: Number(e.target.value) } : null
+                    )
+                  }
+                />{" "}
+                <Input
+                  label="Type of food"
+                  variant="bordered"
+                  value={select?.TypeOfFood || ""}
+                  onChange={(e) =>
+                    setSelect(
+                      select ? { ...select, TypeOfFood: e.target.value } : null
+                    )
+                  }
+                />
               </ModalBody>
-              
+
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
