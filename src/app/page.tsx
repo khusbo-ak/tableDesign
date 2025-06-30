@@ -39,7 +39,6 @@ export default function Home() {
       })
       .catch((err) => console.log(err));
   }, []);
-
   console.log(foodData);
 
   const handleEdit = (id: number) => {
@@ -47,14 +46,8 @@ export default function Home() {
     const row = foodData.find((item) => item.id === id);
     if (!row) return;
     setSelect({ ...row });
-
     onOpen();
-    // const data = foodData.filter(item => item.id === id);
-    // console.log ("Clicked Data:", data);
-    // if(data !== undefined)
-    //   setData(data.foodData)
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let query = e.target.value;
     const newsearch = foodData.filter((item) =>
@@ -63,6 +56,17 @@ export default function Home() {
     setSearch(newsearch);
   };
   console.log("search", search);
+
+  //Update Feature
+  const saveChanges = () => {
+    if (!select) return;
+    const updated = foodData.map((row) => 
+      row.id === select.id ? select : row
+  );
+  setFoodData(updated);
+  setSearch(updated);
+      
+  }
   return (
     <section className=" min-h-screen bg-gray-100">
       <div className="p-4 flex justify-end">
@@ -112,6 +116,7 @@ export default function Home() {
                   <td className="p-2 flex justify-start gap-2">
                     <button
                       onClick={() => handleEdit(data.id)}
+                      
                       className="flex justify-center p-2 bg-sky-700 text-white rounded-md"
                     >
                       <FiEdit />
@@ -191,12 +196,18 @@ export default function Home() {
                   }
                 />
               </ModalBody>
-
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {onClose}}
+                >
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onPress={() => { saveChanges();
+                  
+                  onClose();
+                }}>
                   Action
                 </Button>
               </ModalFooter>
